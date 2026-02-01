@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── shadcn CSS Variables (dark theme) ─────────────────
+   Estes tokens são usados pelos componentes do shadcn
+   (Card, Badge, Button, Avatar, Separator) via classes
+   como bg-card, text-foreground, border, etc.
+   ────────────────────────────────────────────────────── */
+:root {
+  --background: 39 39 42;          /* zinc-800 */
+  --foreground: 250 250 250;       /* near white */
+
+  --card: 39 39 42;                /* zinc-800 */
+  --card-foreground: 250 250 250;
+
+  --popover: 39 39 42;
+  --popover-foreground: 250 250 250;
+
+  --primary: 124 58 237;           /* violet-600 */
+  --primary-foreground: 255 255 255;
+
+  --secondary: 52 54 61;           /* zinc-700 */
+  --secondary-foreground: 187 187 187;
+
+  --muted: 52 54 61;
+  --muted-foreground: 154 154 154;
+
+  --accent: 88 28 135;             /* violet-900 */
+  --accent-foreground: 250 250 250;
+
+  --destructive: 220 38 38;
+  --destructive-foreground: 255 255 255;
+
+  --border: 71 71 71;              /* zinc-600 */
+  --input: 71 71 71;
+  --ring: 124 58 237;              /* violet-600 */
+
+  --radius: 0.5rem;
+}
+
+/* ─── Aplicar variáveis via rgb() para Tailwind compatibilidade ── */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-zinc-900 text-foreground;
+    font-family: 'Geist', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ─── Utility: classes que resolvem as variáveis como rgb() ─────── */
+.bg-card                { background-color: rgb(var(--card)); }
+.text-card-foreground   { color: rgb(var(--card-foreground)); }
+.bg-primary             { background-color: rgb(var(--primary)); }
+.text-primary-foreground{ color: rgb(var(--primary-foreground)); }
+.bg-secondary           { background-color: rgb(var(--secondary)); }
+.text-secondary-foreground { color: rgb(var(--secondary-foreground)); }
+.bg-muted               { background-color: rgb(var(--muted)); }
+.text-muted-foreground  { color: rgb(var(--muted-foreground)); }
+.bg-accent              { background-color: rgb(var(--accent)); }
+.text-accent-foreground { color: rgb(var(--accent-foreground)); }
+.bg-destructive         { background-color: rgb(var(--destructive)); }
+.text-destructive-foreground { color: rgb(var(--destructive-foreground)); }
+.text-foreground        { color: rgb(var(--foreground)); }
+.bg-background          { background-color: rgb(var(--background)); }
+.border-border          { border-color: rgb(var(--border)); }
+.border-input           { border-color: rgb(var(--input)); }
+.text-primary           { color: rgb(var(--primary)); }
+.ring-ring              { --tw-ring-color: rgb(var(--ring)); }
+
+/* ─── Keyframes globais ────────────────────────────── */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Efeitos de fundo ─────────────────────────────── */
+.bg-orb-violet {
+  background: radial-gradient(
+    circle,
+    rgba(124, 58, 237, 0.25) 0%,
+    transparent 70%
+  );
+}
+
+.bg-orb-blue {
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.15) 0%,
+    transparent 70%
+  );
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ─── Scrollbar dark ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1f2937; }
+::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4b5563; }
